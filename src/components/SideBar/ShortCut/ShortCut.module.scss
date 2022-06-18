@@ -1,0 +1,28 @@
+.wrapper {
+    padding: 8px;
+}
+
+.header {
+    padding-left: 8px;
+    & span {
+        word-break: break-word;
+        color: var(--secondary-color);
+        font-weight: 500;
+        word-wrap: break-word;
+        font-size: 1.6rem;
+    }
+    margin-bottom: 8px;
+}
+
+
+.item {
+    width: 100%;
+    padding: 0 8px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--comment-background);
+        border-radius: 8px;
+    }
+}
+

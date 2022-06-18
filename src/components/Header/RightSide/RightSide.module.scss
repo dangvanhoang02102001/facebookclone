@@ -1,0 +1,55 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 999px;
+
+    &:hover {
+        background-color: var(--comment-background);
+        cursor: pointer;
+    }
+
+    & img {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        margin-right: 6px;
+    }
+
+    & span {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: break-word;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    &.active {
+        background-color: #263951;
+
+        & span {
+            color: var(--primary-color);
+        }
+    }
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    
+}
+
+.option {
+    position: relative;
+    margin: 0 4px;
+
+    &:hover .circle{
+        filter: brightness(150%);
+        opacity: .7;
+    }
+}

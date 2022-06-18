@@ -1,0 +1,47 @@
+.large {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--comment-background);
+
+    &:hover {
+        filter: brightness(140%);
+        cursor: pointer;
+    }
+}
+
+.small {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color:var(--circle-background);
+
+    &:hover {
+        filter: brightness(140%);
+        cursor: pointer;
+    }
+}
+
+.wrapper {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--circle-background);
+
+    &:hover {
+        filter: brightness(140%);
+        cursor: pointer;
+    }
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+}

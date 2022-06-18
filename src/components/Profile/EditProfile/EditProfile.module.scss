@@ -1,0 +1,185 @@
+.wrapper {
+    width: 700px;
+    height: 600px;
+    background-color: var(--nav-bar-background);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.header {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+
+    & span {
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: var(--shadow-text);
+    }
+
+    & .closeBtn {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(120%);
+        }
+
+        & .circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--comment-background);
+        }
+    }
+
+}
+
+.main {
+    position: fixed;
+    width: 700px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    top: 60px;
+    max-height: 540px;
+    bottom: 0;
+}
+
+.scrollBar {
+    background-color: #242526;
+}
+
+.os-scrollbar-handle {
+    height: 50%;
+}
+
+.section {
+    padding-bottom: 20px;
+}
+
+.content {
+    padding: 16px 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+}
+
+.cover {
+    width: 500px;
+    height: 190px;
+    border-radius: 8px;
+}
+
+.bio {
+    color: var(--secondary-color);
+    font-size: 1.7rem;
+}
+
+.infor {
+    width: 100%;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    color: var(--shadow-text);
+
+    & .icon {
+        padding: 6px 6px 6px 0;
+        display: flex;
+        align-items: center;
+
+    }
+
+    & span {
+        display: block;
+        padding: 0 6px;
+        font-size: 1.5rem;
+    }
+}
+
+.update {
+    
+    padding: 0 16px;
+    
+    
+    & span {
+        color: var(--shadow-text);
+        background-color: var(--primary-color);
+        display: flex;
+        padding: 12px 0;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-size: 1.8rem;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(120%);
+        }
+    }
+}
+
+
+.bioEdit {
+
+    & textarea {
+        padding: 8px 12px;
+        resize: none;
+        border-radius: 6px;
+        background-color: #4E4E4F;
+        outline: 1px solid var(--primary-color);
+        text-align: center;
+        color: var(--shadow-text);
+    }
+}
+
+.bioButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 6px;
+    color: var(--shadow-text);
+
+    & button {
+        height: 36px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 6px;
+        color: var(--shadow-text);
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(120%);
+        }
+    }
+
+    & .cancelBtn {
+        background-color: var(--comment-background);
+        margin-right: 6px;
+    }
+
+    & .saveBtn {
+        background-color: var(--primary-color);
+    }
+}

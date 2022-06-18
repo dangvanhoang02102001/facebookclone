@@ -1,0 +1,13 @@
+.wrapper {
+    padding: 16px 32px 32px 16px;
+    width: 100%;
+}
+
+.topic {
+    margin: 4px 0 24px 0;
+    & span {
+        font-size: 2rem;
+        color: var(--shadow-text);
+        font-weight: 500;
+    }
+}

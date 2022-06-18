@@ -3,7 +3,16 @@
 
 :root {
     --primary-color: #1877F2;
-
+    --text-color: #1c1e21;
+    --comment-background: #3A3B3C;
+    --nav-bar-background: #242526;
+    --main-background: #18191A;
+    --secondary-color: #B0B3B8;
+    --shadow-text: #E4E6EB;
+    --border-color: rgba(255, 255, 255, 0.05);
+    --circle-background: rgba(255,255,255,.1);
+    --divider: #3E4042;
+    --nav-bar-background-gradient: linear-gradient(to top, #242526, rgba(36,37,38,.9), rgba(36,37,38,.7), rgba(36,37,38,.4), rgba(36,37,38,0));
 }
 
 * {
@@ -17,4 +26,5 @@ html {
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
+    background-color: #18191A;
 }

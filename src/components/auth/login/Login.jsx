@@ -1,8 +1,14 @@
+import classes from './Login.module.scss'
+import LeftSide from './LeftSide'
+import FormLogin from './FormLogin'
 
 const Login = () => {
     return (    
-        <div>
-            Login Page
+        <div className={classes.background}>
+            <div className={classes.wrapper}>
+                <LeftSide />
+                <FormLogin />
+            </div>
         </div>
     )
 }

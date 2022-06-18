@@ -1,0 +1,12 @@
+.wrapper {
+    position: fixed;
+    height: 56px;
+    background-color: var(--nav-bar-background);
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    border-bottom: 1px solid #2D2E2F;
+}

@@ -1,0 +1,49 @@
+.wrapper {
+    width: 100%;
+    background-color: var(--nav-bar-background);
+    border-radius: 8px;
+    padding: 20px 16px;
+}
+
+.title {
+    color: var(--shadow-text);
+    font-size: 2.1rem;
+    font-weight: 500;
+}
+
+.bio {
+    padding-top: 16px;
+    text-align: center;
+    & .bioContent {
+        padding-bottom: 16px;
+        color: var(--shadow-text);
+        word-break: break-word;
+    }
+}
+
+.infor {
+    padding-top: 16px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    color: var(--shadow-text);
+
+    & span {
+        word-break: break-word;
+        margin-left: 12px;
+        font-size: 1.5rem;
+    }
+
+    &:last-child {
+        padding-top: 16px;
+    }
+}
+
+.actions {
+    margin-top: 12px;
+    & .button {
+        padding-bottom: 16px;
+    }
+}

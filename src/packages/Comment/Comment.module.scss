@@ -1,0 +1,68 @@
+.wrapper {
+    padding: 4px 0;
+    margin-top: 4px;
+}
+
+.infor {
+    display: flex;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 4px;
+    margin-top: 2px;
+    & img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+}
+
+.content {
+    background-color: var(--comment-background);
+    padding: 8px 12px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    white-space: normal;
+    & .name {
+        font-size: 1.3rem;
+        color: var(--shadow-text);
+        white-space: normal;
+        word-break: break-word;
+        font-size: 400;
+    }
+
+    & .comment {
+        font-size: 1.5rem;
+        color: var(--shadow-text);
+        white-space: normal;
+        word-break: break-word;
+        font-size: 400;
+        margin-top: 2px;
+    }
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    padding-left: 36px;
+    margin-top: 4px;
+
+    & span {
+        font-size: 1.2rem;
+        color: var(--secondary-color);
+        margin: 0 8px;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+
+    & .like, .reply {
+        font-weight: 600;
+    }
+}

@@ -1,0 +1,133 @@
+.wrapper {
+    width: 700px;
+    background-color: var(--nav-bar-background);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.header {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+
+    & .title {
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: var(--shadow-text);
+    }
+
+    & .closeBtn {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(120%);
+        }
+
+        & .circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--comment-background);
+        }
+    }
+
+}
+
+.content {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.description {
+
+    & textarea {
+        padding: 12px;
+        // outline: 1px solid var(--primary-color);
+        outline-color: var(--primary-color);
+        width: 100%;
+        color: #fff;
+        resize: none;
+        border-radius: 8px;
+        background-color: transparent;
+        border: 1px solid var(--border-color);
+        font-size: 1.7rem;
+    }
+}
+
+.imageSection {
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageSelect {
+    position: relative;
+    width: 320px;
+    height: 320px;
+        user-select: none;
+    -webkit-mask-image: radial-gradient(circle, white 70%, rgba(0, 0, 0, 0.3) 70%);
+    mask-image: radial-gradient(circle, white 50%, rgba(0, 0, 0, 0.5) 50%);
+
+    & img {
+        width: 100%;
+        height: 100%;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+    }
+}
+
+
+.footer {
+    height: 70px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    & button {
+        height: 100%;
+        border: 0;
+        border-radius: 6px;
+        font-size: 1.5rem;
+        &:hover {
+            cursor: pointer;
+            filter: brightness(120%);
+
+        }
+    }
+
+    & .cancelBtn {
+        color: var(--primary-color);
+        background-color: transparent;
+        padding: 0 12px;
+        margin-right: 6px;
+
+        &:hover {
+            background-color: var(--comment-background);
+        }
+    }
+
+    & .saveBtn {
+        background-color: var(--primary-color);
+        padding: 0 40px;
+        color: #fff;
+    }
+}

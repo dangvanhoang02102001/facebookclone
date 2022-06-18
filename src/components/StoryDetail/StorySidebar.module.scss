@@ -1,0 +1,130 @@
+.wrapper {
+    position: relative;
+    // min-width: 360px;
+    width: 360px;
+    height: 100vh;
+    background-color: var(--nav-bar-background);
+}
+
+
+.sidebar {
+    position: fixed;
+    width: 360px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    top: 57px;
+    bottom: 0;
+}
+
+.scrollBar {
+    background-color: #242526;
+
+}
+
+.os-scrollbar-handle {
+    height: 50%;
+}
+
+.header {
+    position: fixed;
+    background-color: var(--nav-bar-background);
+    width: 360px;
+    z-index: 2;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: #161617;
+
+    &:hover {
+        background-color: #4b4b4f;
+        cursor: pointer;
+    }
+}
+
+.logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid #2e2e31;
+}
+
+
+.optionHeader {
+    padding: 4px 12px;
+}
+
+.topic {
+    font-size: 2.4rem;
+    color: var(--shadow-text);
+    padding: 12px 4px;
+    display: block;
+    font-weight: 600;
+}
+
+.createSection {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.icon {
+    min-width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--comment-background);
+}
+
+.createStory {
+    padding: 0 4px;
+    
+}
+
+.topicTitle {
+    margin: 0;
+    font-size: 1.7rem;
+    color: var(--shadow-text);
+    font-weight: 400;
+    margin: 20px 0;
+}
+
+.createContent {
+    margin-left: 12px;
+
+    & h4 {
+        font-size: 1.5rem;
+        color: var(--shadow-text);
+        font-weight: 400;
+        margin: 0;
+    }
+
+    & span {
+        font-size: 1.3rem;
+        color: var(--secondary-color);
+    }
+}
+
+.listStory {
+    padding: 0 8px;
+
+    & .topicTitle  {
+        padding: 0 8px;
+    }
+}
+

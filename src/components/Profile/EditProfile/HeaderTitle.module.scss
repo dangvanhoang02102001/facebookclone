@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding: 20px 16px 4px 16px;
+}
+
+.title {
+    font-size: 2rem;
+    color: var(--shadow-text);
+    word-wrap: break-word;
+    font-weight: 500;
+}
+
+.button {
+    padding: 8px;
+    border-radius: 4px;
+    
+    &:hover {
+        background-color: var(--comment-background);
+        cursor: pointer;
+    }
+
+    & span {
+        font-size: 1.7rem;
+        color: var(--primary-color);
+    }
+}

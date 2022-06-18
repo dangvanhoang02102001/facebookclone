@@ -1,6 +1,10 @@
-const Home = () => {
+import classes from './Home.module.scss'
+
+const Home = ({children}) => {
     return(
-        <div>Home Page</div>
+        <div className={classes.wrapper}>
+            {children}
+        </div>
     )
 }
 

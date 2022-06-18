@@ -1,0 +1,88 @@
+// .wrapper {
+
+// }
+
+.postContent {
+
+    & img {
+        width: 590px;
+        // max-height: 590px;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        aspect-ratio: 1 / 1;
+    }
+}
+
+.statistical {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+    padding: 10px 0;
+    margin: 0 16px;
+    border-bottom: 1px solid var(--comment-background);
+}
+
+.react {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    & span {
+        color: var(--secondary-color);
+        margin-left: 6px;
+    }
+}
+
+.emoji {
+    display: flex;
+    align-items: center;
+}
+
+.commentWrapper {
+    display: flex;
+    align-items: center;
+
+    & .comment {
+        margin-right: 8px;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    & .share:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.actions {
+    margin: 4px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+}
+
+.action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 100%;
+    & span {
+        color: var(--secondary-color);
+        margin-left: 8px;
+    }
+
+    
+
+    &:hover {
+        background-color: var(--comment-background);
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}

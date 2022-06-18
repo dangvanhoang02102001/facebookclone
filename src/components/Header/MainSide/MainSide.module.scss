@@ -1,0 +1,36 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.iconGroup {
+    width: 112px;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    
+    &:hover {
+        background-color: #3A3B3C;
+        cursor: pointer;
+    }
+
+    &.active::before {
+        content: "";
+        position: absolute;
+        height: 3px;
+        bottom: 0;
+        width: 108px;
+        background-color: var(--primary-color);
+    }
+
+    &.active:hover {
+        cursor: pointer;
+        background-color: transparent;
+    }
+}
+
+

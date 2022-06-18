@@ -1,0 +1,33 @@
+.wrapper {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    color: var(--secondary-color);
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 0 8px;
+    margin-top: 12px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.action {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 4px;
+
+    &:hover {
+        background-color: var(--comment-background);
+        cursor: pointer;
+    }
+}

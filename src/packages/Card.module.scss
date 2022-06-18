@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    height: 52px;
+}
+
+.icon {
+    & img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+    }
+}
+
+.svg {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--comment-background);
+    margin-right: 4px;
+}
+
+.content {
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-left: 6px;
+}

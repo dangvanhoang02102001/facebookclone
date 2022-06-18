@@ -1,0 +1,24 @@
+.wrapper {
+    position: relative;
+    width: 360px;
+    background-color: var(--main-background);
+    height: 100%;
+}
+
+.test {
+    position: fixed;
+    width: 360px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    top: 56px;
+    bottom: 0;
+}
+
+.scrollBar {
+    background-color: #242526;
+
+}
+
+.os-scrollbar-handle {
+    height: 50%;
+}
