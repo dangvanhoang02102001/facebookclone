@@ -75,3 +75,30 @@
         opacity: .9;
     }
 }
+
+
+.error {
+    margin: 4px 0;
+    padding: 0 16px;
+    position: relative;
+
+    & span {
+        display: block;
+        color: #fff;
+        background-color: rgb(197, 20, 20);
+        padding: 8px 0;
+        border-radius: 4px;
+        font-size: 1.5rem;
+    }
+}
+
+.arrow {
+    position: absolute;
+    right: 32px;
+    top: -8px;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(197, 20, 20);
+  }

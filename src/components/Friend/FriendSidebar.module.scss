@@ -1,0 +1,58 @@
+.wrapper {
+    min-width: 360px;
+    height: 100%;
+    background-color: var(--nav-bar-background);
+    padding: 0 8px;
+    position: fixed;
+}
+
+.header {
+    padding: 0 8px;
+    margin: 16px 0;
+    & span {
+        font-size: 2.4rem;
+        color: var(--shadow-text);
+        font-weight: bold;
+    }
+}
+
+.option {
+    text-decoration: none;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 8px;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: var(--comment-background);
+    }
+
+    & span {
+        color: var(--shadow-text);
+        font-size: 1.7rem;
+        word-wrap: break-word;
+        font-weight: 500;
+    }
+
+    &.active {
+        background-color: var(--comment-background);
+        & .circle {
+            background-color: var(--primary-color);
+            
+        }
+    }
+
+}
+
+.circle {
+    width: 36px;
+    height: 36px;
+    background-color: var(--comment-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}

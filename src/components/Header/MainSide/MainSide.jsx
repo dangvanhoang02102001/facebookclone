@@ -1,27 +1,28 @@
+import { NavLink, useLocation } from 'react-router-dom'
 
-import { HomeIcon, FriendIcon, WatchIcon, MarketPlaceIcon, GameIcon } from '~/assets/svg/icon'
+import { HomeIcon, FriendIcon, GroupIcon, MarketPlaceIcon, GameIcon } from '~/assets/svg/icon'
 import classes from './MainSide.module.scss'
 
 const MainSide = (props) => {
-    
+    const location = useLocation()
 
     return(
         <div className={classes.wrapper}>
-            <div className={props.homeActive ? [classes.iconGroup, classes.active].join(' ') : classes.iconGroup} onClick={props.onActiveHome}>
-                <HomeIcon className={classes.icon} homeActive={props.homeActive } />
-            </div>
-            <div className={props.friendActive ? [classes.iconGroup, classes.active].join(' ') : classes.iconGroup} onClick={props.onActiveFriend}>
-                <FriendIcon className={classes.icon} friendActive={props.friendActive} />
-            </div>
-            <div className={props.watchActive ? [classes.iconGroup, classes.active].join(' ') : classes.iconGroup} onClick={props.onActiveWatch}>
-                <WatchIcon className={classes.icon} watchActive={props.watchActive} />
-            </div>
-            <div className={props.marketActive ? [classes.iconGroup, classes.active].join(' ') : classes.iconGroup} onClick={props.onActiveMarket}>
-                <MarketPlaceIcon className={classes.icon} marketActive={props.marketActive} />
-            </div>
-            <div className={props.gameActive ? [classes.iconGroup, classes.active].join(' ') : classes.iconGroup} onClick={props.onActiveGame}>
-                <GameIcon className={classes.icon} gameActive={props.gameActive} />
-            </div>
+            <NavLink to='/' className={({ isActive }) => classes.iconGroup + ' ' +(isActive ? classes.active : "")} >
+                <HomeIcon className={classes.icon} homeActive={location.pathname === '/' ? true : false} />
+            </NavLink>
+            <NavLink to='/friends' className={({ isActive }) => classes.iconGroup + ' ' + (isActive ? classes.active : "")}>
+                <FriendIcon className={classes.icon} friendActive={location.pathname === '/friends' ? true : false} />
+            </NavLink>
+            <NavLink to='/groups' className={({ isActive }) => classes.iconGroup + ' ' + (isActive ? classes.active : "")} >
+                <GroupIcon className={classes.icon} groupActive={location.pathname === '/groups' ? true : false} />
+            </NavLink>
+            <NavLink to='/markets' className={({ isActive }) => classes.iconGroup + ' ' + (isActive ? classes.active : "")} >
+                <MarketPlaceIcon className={classes.icon} marketActive={location.pathname === '/markets' ? true : false} />
+            </NavLink>
+            <NavLink to='/gaming' className={({ isActive }) => classes.iconGroup + ' ' + (isActive ? classes.active : "")}>
+                <GameIcon className={classes.icon} gameActive={location.pathname === '/gaming' ? true : false} />
+            </NavLink>
         </div>
     )
 }

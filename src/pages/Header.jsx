@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -8,66 +8,20 @@ import MainSide from "~/components/Header/MainSide/MainSide"
 import RightSide from "~/components/Header/RightSide/RightSide"
 
 const Header = () => {
-    const location = useLocation()
-    const currentPath = location.pathname
     const navigate = useNavigate()
+    const location = useLocation()
     const [menuActive, setMenuActive] = useState(false)
     const [messActive, setMessActive] = useState(false)
     const [notifyActive, setNotifyActive] = useState(false)
     const [dropActive, setDropActive] = useState(false)
-
     
-
-    const [homeActive, setHomeActive] = useState(currentPath === '/' ? true : false)
-    const [friendActive, setFriendActive] = useState(false)
-    const [watchActive, setWatchActive] = useState(false)
-    const [marketActive, setMarketActive] = useState(false)
-    const [gameActive, setGameActive] = useState(false)
-    const [profileActive, setProfileActive] = useState(false)
-    
-
-    const mainOption = [setHomeActive,setFriendActive, setWatchActive, setMarketActive, setGameActive, setProfileActive]
     const rightOption = [setMenuActive,setMessActive, setNotifyActive, setDropActive]
     
-    console.log(location)
-    
-    const handleActiveOption = (func) => {
-        for(let unActiveOption of mainOption) {
-            unActiveOption(false)
-        }
-        func(true)
-    }
 
     const handleActiveRightOption = (func) => {
         for(let unActiveOption of rightOption) {
             unActiveOption(false)
         }
-    }
-
-    const hanldeActiveHome = () => {
-        handleActiveOption(setHomeActive)
-        navigate('/')
-    }
-
-    const hanldeActiveFriend = () => {
-        handleActiveOption(setFriendActive)
-    }
-
-    const hanldeActiveWatch = () => {
-        handleActiveOption(setWatchActive)
-    }
-
-    const hanldeActiveMarket = () => {
-        handleActiveOption(setMarketActive)
-    }
-
-    const hanldeActiveGame = () => {
-        handleActiveOption(setGameActive)
-    }
-
-    const handleActiveProfile = () => {
-        handleActiveOption(setProfileActive)
-        navigate('/profile')
     }
 
     const handleActiveMenu = () => {
@@ -85,37 +39,44 @@ const Header = () => {
         setNotifyActive(!notifyActive)
     }
 
+    if(location.pathname !== window.location.pathname) {
+        console.log('hsass')
+    }
+    
     const handleShowDropContent = () => {
         handleActiveRightOption(setDropActive)
         setDropActive(!dropActive)
+    }
+
+    const handleNavigateProfile = () => {
+        navigate('/profile')
+    }
+
+    const handleLogout = () => {
+        navigate('/login')
+    }
+
+    const handleChangePassword = () => {
+        navigate('/account/change_password')
     }
 
     return(
         <HeaderComponent>
             <LeftSide />
             <MainSide
-                homeActive={homeActive}
-                friendActive={friendActive}
-                watchActive={watchActive}
-                marketActive={marketActive}
-                gameActive={gameActive}
-                onActiveHome={hanldeActiveHome}
-                onActiveFriend={hanldeActiveFriend}
-                onActiveWatch={hanldeActiveWatch}
-                onActiveMarket={hanldeActiveMarket}
-                onActiveGame={hanldeActiveGame}
             />
             <RightSide 
-                profileActive={profileActive}
                 menuActive={menuActive}
                 messActive={messActive}
                 notifyActive={notifyActive}
                 dropActive={dropActive}
-                onActiveProfile={handleActiveProfile}
                 onActiveMenu={handleActiveMenu}
                 onActiveMess={handleActiveMess}
                 onActiveNotify={handleActiveNotify}
                 onActiveDrop={handleShowDropContent}
+                onNavigateProfile={handleNavigateProfile}
+                onChangePassword={handleChangePassword}
+                onLogout={handleLogout}
             />
         </HeaderComponent>
     )

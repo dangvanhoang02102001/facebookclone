@@ -8,16 +8,28 @@ import classes from './CreateSection.module.scss'
 
 
 const CreateSection = (props) => {
+    const [type, setType] = useState('text')
     const [createModal, setCreateModal] = useState(false)
     const [imageModal, setImageModal] = useState(false)
     const handleOpenCreateModal = () => setCreateModal(true)
-    const handleOpenImageModal = () => setImageModal(true)
+    const handleOpenImageModal = () => {
+        setImageModal(true)
+        setType('image')
+    }
     const handleCloseCreateModal = () => setCreateModal(false)
     const handleCloseImageModal = () => setImageModal(false)
 
     const handleCloseAll = () => {
         handleCloseCreateModal()
         handleCloseImageModal()
+    }
+
+    const handleSetTextType = () => {
+        setType('text')
+    }
+
+    const handleSetImageType = () => {
+        setType('image')
     }
 
     return (
@@ -30,7 +42,12 @@ const CreateSection = (props) => {
                     onClose={handleCloseCreateModal}
                 >
                     <>
-                        <NewPostModal type="default" onClose={handleCloseAll}/>
+                        <NewPostModal 
+                            type={type} 
+                            onClose={handleCloseAll}
+                            onSetTextType={handleSetTextType}
+                            onSetImageType={handleSetImageType}
+                        />
                     </>
                 </Modal>
             </div>
@@ -48,7 +65,12 @@ const CreateSection = (props) => {
                     onClose={handleCloseImageModal}
                 >
                     <>
-                        <NewPostModal type="image" onClose={handleCloseAll} />
+                        <NewPostModal 
+                            type={type} 
+                            onClose={handleCloseAll}
+                            onSetTextType={handleSetTextType}
+                            onSetImageType={handleSetImageType}
+                         />
                     </>
                 </Modal>
                 {props.type === 'default'

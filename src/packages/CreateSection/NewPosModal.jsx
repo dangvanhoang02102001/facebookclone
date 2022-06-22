@@ -10,7 +10,21 @@ import Circle from '~/packages/Circle';
 import classes from './NewPostModal.module.scss'
 
 const NewPostModal = (props) => {
-    const [type, setType] = useState('default')
+   
+    const [selectedImage, setSelectedImage] = useState();
+    
+    const imageChange = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setSelectedImage(e.target.files[0]);
+            props.onSetImageMode()
+        }
+    };
+
+    const handleDiscardImagePreview = () => {
+        props.onSetTextType()
+        setSelectedImage()
+    }
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
@@ -37,11 +51,10 @@ const NewPostModal = (props) => {
                     </div>
                 </div>
                 <>
-                    {props.type === type ?
+                    {props.type === 'text' ?
                         <div className={classes.defaultTypeWrapper}>
                             <div className={classes.inputCaptionDefault}>
                                 <input type="text" placeholder='Hoàng ơi, bạn đang nghĩ gì thế?'/>
-                                
                             </div>
                             <div className={classes.defaultOptions}>
                                 <div className={classes.defaultOption}>
@@ -53,36 +66,57 @@ const NewPostModal = (props) => {
                             </div>
                         </div>
                     :
-                    <>
+                    <div className={classes.uploadContent}>
                         <div className={classes.inputCaption}>
                             <input type="text" placeholder='Hoàng ơi, bạn đang nghĩ gì thế?'/>
                             <div className={classes.emoji}>
                                 <EmojiIcon dfColor/>
                             </div>
                         </div>
-                        <div className={classes.uploadSection}>
-                            <div className={classes.upload}>
-                                <div className={classes.inner}>
-                                    <Circle>
-                                        <MdAddToPhotos size={20} />
-                                    </Circle>
-                                    <span>Thêm ảnh/video</span>
+                        {selectedImage ? 
+                            <div className={classes.previewPost}>
+                                <div className={classes.cancelPost} onClick={handleDiscardImagePreview}>
+                                    <CloseIcon size={16}/>
                                 </div>
-                                <div className={classes.cancelImage} onClick={() => setType('default')}>
-                                    <Circle small>
-                                        <CloseIcon />
-                                    </Circle>
-                                </div>
+                                <img
+                                    src={URL.createObjectURL(selectedImage)}
+                                    alt="Thumb"
+                                />
                             </div>
-                        </div>
-                    </>
+                            :
+                            <label className={classes.uploadSection} htmlFor="chosen-video" onClick={() => console.log('Test')}>
+                                <div className={classes.upload}>
+                                    <div className={classes.inner}>
+                                        <Circle>
+                                            <MdAddToPhotos size={20} />
+                                        </Circle>
+                                        <span>Thêm ảnh</span>
+                                    </div>
+                                    <div className={classes.cancelImage} onClick={() => props.onSetTextType()}>
+                                        <Circle small>
+                                            <CloseIcon />
+                                        </Circle>
+                                    </div>
+                                </div>
+                                <input
+                                    id="chosen-video"
+                                    accept="image/*"
+                                    type="file"
+                                    onChange={imageChange}
+                                    hidden
+                                />
+                            </label>
+                        }
+
+                        
+                    </div>
                 }
                 </>
                 <div className={classes.uploadMode}>
                     <div className={classes.optionsWrapper}>
                         <span>Thêm vào bài viết</span>
                         <div className={classes.options}>
-                            <div className={classes.option} onClick={() => props.type === setType('image')}>
+                            <div className={classes.option} onClick={() => props.onSetImageType()}>
                                 <ImageIcon />
                             </div>
                             <div className={classes.option}>

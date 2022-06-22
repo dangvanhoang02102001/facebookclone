@@ -2,7 +2,6 @@
     background-color: #fff;
     padding: 0;
     width: 432px;
-    height: 496px;
     position: relative;
     left: 50%;
     top: 50%;
@@ -28,7 +27,7 @@
 
 .title {
     & h3 {
-        font-size: 3.2rem;
+        font-size: 3rem;
         line-height: 38px;
         color: var(--text-color);
         margin: 0;
@@ -160,3 +159,29 @@
     }
    
 }
+
+
+.error {
+    margin: 6px 0;
+    position: relative;
+
+    & span {
+        display: block;
+        color: #fff;
+        background-color: rgb(197, 20, 20);
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 1.5rem;
+    }
+}
+
+.arrow {
+    position: absolute;
+    right: 32px;
+    top: -6px;
+    width: 0; 
+    height: 0; 
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid rgb(197, 20, 20);
+  }

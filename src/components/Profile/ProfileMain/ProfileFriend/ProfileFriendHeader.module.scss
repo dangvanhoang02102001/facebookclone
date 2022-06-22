@@ -1,0 +1,43 @@
+// .wrapper {
+
+// }
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    margin-bottom: 8px;
+
+    & h4 {
+        font-size: 2rem;
+        margin: 0;
+        color: var(--shadow-text);
+        font-weight: 500;
+    }
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    & .button {
+        padding: 0 12px;
+        height: 100%;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        margin: 0 8px;
+
+        &:hover {
+            background-color: var(--comment-background);
+            cursor: pointer;
+            border-radius: 6px;
+        }
+    }
+}
+
+// .options {
+//     height: 60px;
+// }

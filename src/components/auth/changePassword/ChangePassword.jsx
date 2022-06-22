@@ -1,29 +1,37 @@
-import { GrClose } from 'react-icons/gr';
+import Logo from '~/assets/svg'
 import classes from './ChangePassword.module.scss'
 
-const ChangePassword = ({ handleClose = () => {} }) => {
+const ChangePassword = (props) => {
     return (
         <div className={classes.wrapper}>
-            <div className={classes.header}>
-                <div className={classes.title}>
-                    <h3>Change your password</h3>
-                </div>
-                <div className={classes.closeBtn} onClick={handleClose}>
-                    <GrClose />
+             <div className={classes.header} onClick={props.onBackToHome}>
+                <div className={classes.logo}>
+                    <Logo />
                 </div>
             </div>
-            <div className={classes.content}>
-                <div className={classes.formGroup}>
-                    <input className={classes.input} type="text" placeholder='Email Address' />
-                </div>  
-                <div className={classes.formGroup}>
-                    <input className={classes.input} type="password" placeholder='Current Password' />
-                </div>  
-                <div className={classes.formGroup}>
-                    <input className={classes.input} type="password" placeholder='New Password' />
-                </div> 
-                <div className={classes.signupBtn}>
-                    <button>Change</button>
+            <div className={classes.form}>
+                <div className={classes.title}>
+                    <h3>Đặt lại mật khẩu</h3>
+                </div>
+                
+                <div className={classes.description}>Nhập mật khẩu mói để cập nhật lại mật khẩu.</div>
+                <div className={classes.input}>
+                    <input type="password" placeholder='Mật khẩu hiện tại' value={props.currentPassword} onChange={props.onTypingCurrentPassword}/>
+                </div>
+                <div className={classes.input}>
+                    <input type="password" placeholder='Mật khẩu mới' value={props.newPassword} onChange={props.onTypingNewPassword}/>
+                </div>
+                <div className={classes.input}>
+                    <input type="password" placeholder='Xác thực mật khẩu mới' value={props.confirmPassword} onChange={props.onTypingConfirmPassword}/>
+                </div>
+                {props.error !== '' && 
+                    <div className={classes.error}>
+                        <h4>{props.error}</h4>
+                    </div>
+                }
+                <div className={classes.buttons}>
+                    <button className={classes.cancelBtn} onClick={props.onBack}>Hủy</button>
+                    <button className={classes.sendBtn} onClick={props.onChangePass}>Lưu</button>
                 </div>
             </div>
         </div>

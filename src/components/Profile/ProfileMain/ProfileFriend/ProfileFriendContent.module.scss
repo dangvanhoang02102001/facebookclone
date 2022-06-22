@@ -1,0 +1,46 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -8px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    min-width: calc(49.99% - 8px);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    & img {
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+    & span {
+        font-size: 1.7rem;
+        color: var(--shadow-text);
+        display: flex;
+        flex: 1;
+        cursor: pointer;
+        margin-left: 16px;
+    }
+}
+
+.circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--comment-background);
+    }
+}

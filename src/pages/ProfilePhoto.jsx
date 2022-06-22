@@ -1,8 +1,13 @@
+import ProfilePhotoComponent from "~/components/Profile/ProfileMain/ProfilePhoto/ProfilePhoto"
+import ProfilePhotoContent from "~/components/Profile/ProfileMain/ProfilePhoto/ProfilePhotoContent"
+import ProfilePhotoHeader from "~/components/Profile/ProfileMain/ProfilePhoto/ProfilePhotoHeader"
+
 const ProfilePhoto = () => {
     return (
-        <div>
-            Photo
-        </div>
+        <ProfilePhotoComponent>
+            <ProfilePhotoHeader />
+            <ProfilePhotoContent />
+        </ProfilePhotoComponent>
     )
 }
 

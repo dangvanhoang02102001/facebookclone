@@ -5,6 +5,8 @@ import {
   Route
 } from 'react-router-dom';
 import { publicRoutes } from '~/routes';
+import FriendLayout from './Layout/FriendLayout';
+import GroupLayout from './Layout/GroupLayout';
 import DefaultLayout from './Layout/Layout';
 import ProfileLayout from './Layout/ProfileLayout';
 
@@ -25,6 +27,14 @@ const App = () => {
               }
               case 'profile': {
                 Layout = ProfileLayout
+                break
+              }
+              case 'friend': {
+                Layout = FriendLayout
+                break
+              }
+              case 'group': {
+                Layout = GroupLayout
                 break
               }
               default: {

@@ -1,18 +1,16 @@
 
-import { RiSettings5Fill } from 'react-icons/ri';
-import { IoHelpCircle,IoLogOutSharp } from 'react-icons/io5';
+import { RiSettings5Fill, RiLockPasswordFill } from 'react-icons/ri';
+import { IoHelpCircle } from 'react-icons/io5';
 import { FaMoon } from 'react-icons/fa';
-import { MdFeedback,MdLogout } from 'react-icons/md';
-// import { IoLogOutSharp } from 'react-icons/io5';
+import { MdLogout } from 'react-icons/md';
 
 import Card from '~/packages/Card'
 
 import classes from './DropContent.module.scss'
 import defaultAvt from '~/assets/img/default.png'
-import { useNavigate } from 'react-router-dom';
 
-const DropContent = () => {
-    const navigate = useNavigate()
+const DropContent = (props) => {
+    
     const footer = [
         {
             id: 0,
@@ -48,16 +46,13 @@ const DropContent = () => {
         },
     ]
 
-    const handleNavigateProfile = () => {
-        navigate('/profile')
-    }
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
                 <div className={classes.avatar}>
                     <img src={defaultAvt} alt="" />
                 </div>
-                <div className={classes.infor} onClick={handleNavigateProfile}>
+                <div className={classes.infor} onClick={props.onNavigateProfile}>
                     <div className={classes.name}>Đặng Hoàng</div>
                     <span>Xem trang cá nhân của bạn</span>
                 </div>
@@ -88,15 +83,15 @@ const DropContent = () => {
                         <FaMoon fill='#fff' size={24}/>
                     </Card>
                 </div>
-                <div className={classes.item}>
+                <div className={classes.item} onClick={props.onChangePassword}>
                     <Card
                         svg
-                        content='Đóng góp ý kiến'
+                        content='Đổi mật khẩu'
                     >
-                        <MdFeedback fill='#fff' size={24}/>
+                        <RiLockPasswordFill fill='#fff' size={24}/>
                     </Card>
                 </div>
-                <div className={classes.item}>
+                <div className={classes.item} onClick={props.onLogout}>
                     <Card
                         svg
                         content='Đăng xuất'

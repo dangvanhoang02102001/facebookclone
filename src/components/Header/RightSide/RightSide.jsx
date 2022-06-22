@@ -1,19 +1,20 @@
-import { useNavigate } from "react-router-dom";
+
 
 import Circle from '~/packages/Circle'
 import avtDefault from '~/assets/img/default.png'
 import { DropIcon, MenuIcon, MessIcon, NotiIcon } from '~/assets/svg/icon'
 import classes from './RightSide.module.scss'
 import DropContent from "./DropContent";
+import { NavLink } from 'react-router-dom';
 
 const RightSide = (props) => {
-    console.log(props.profileActive)
+
     return(
         <div className={classes.wrapper}>
-            <div className={props.profileActive ? [classes.profile, classes.active].join(' ') : classes.profile} onClick={props.onActiveProfile}>
+            <NavLink to='/profile' className={({ isActive }) => classes.profile + ' ' + (isActive ? classes.active: "")} >
                 <img src={avtDefault} alt="" />
                 <span>Đặng Hoàng</span>
-            </div>
+            </NavLink>
             <div className={classes.options}>
                 <div className={classes.option} onClick={props.onActiveMenu}>
                     <div className={classes.circle}>
@@ -42,8 +43,12 @@ const RightSide = (props) => {
                             <DropIcon dropActive={props.dropActive}/>
                         </Circle>
                     </div>
-                    {props.dropActive && <DropContent />}
                 </div>
+                {props.dropActive && <DropContent
+                    onNavigateProfile={props.onNavigateProfile}
+                    onChangePassword={props.onChangePassword}
+                    onLogout={props.onLogout}
+                />}
             </div>
         </div>
     )
