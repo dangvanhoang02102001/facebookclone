@@ -1,9 +1,29 @@
-import { IoClose } from 'react-icons/io5';
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '~/store/user-slice';
 
-import linh from '~/assets/img/linh.jpg'
+import { IoClose } from 'react-icons/io5';
 import classes from './AvatarEditModal.module.scss'
 
 const AvatarEditModal = (props) => {
+    const currentId = useSelector(state => state.user.currentId)
+    const dispatch = useDispatch()
+
+    const handleUpdate = () => {
+        const formData = new FormData();
+        formData.append('profile_photo_path', props.selectedAvatar || 'http://localhost:8000/storage/employees/Post_home/' + props.img);
+
+        axios.post(`/auth/user/${currentId}`,formData)
+        .then(function (response) {
+            console.log(response)
+            dispatch(userActions.setCurrentUser(response.data.user))
+            props.onClose()
+        })
+        .catch(function (err) {
+            console.log(err)
+        });
+    }
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
@@ -23,14 +43,14 @@ const AvatarEditModal = (props) => {
                         {props.selectedAvatar ? 
                             <img src={URL.createObjectURL(props.selectedAvatar)} alt="avatar" />
                         :
-                            <img src={linh} alt="avatar" />
+                            <img src={'http://localhost:8000/storage/employees/Post_home/' + props.img} alt="avatar" />
                         }
                     </div>
                 </div>
             </div>
             <div className={classes.footer}>
                 <button onClick={props.onClose} className={classes.cancelBtn}>Hủy</button>
-                <button className={classes.saveBtn}>Lưu</button>
+                <button className={classes.saveBtn} onClick={handleUpdate}>Lưu</button>
             </div>
         </div>
     )

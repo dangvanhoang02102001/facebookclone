@@ -8,7 +8,7 @@ const ProfilePreview = (props) => {
         <div className={classes.wrapper}> 
             <div className={classes.header}>
                 <div className={classes.sidebar}>
-                    <img src={props.avatar} alt="#" />
+                    <img src={'http://localhost:8000/storage/employees/avt/' + props.avatar} alt="#" />
                 </div>
                 <div className={classes.content}>
                     <div className={classes.name}>{props.name}</div>

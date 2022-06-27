@@ -1,29 +1,40 @@
 import Tippy from '@tippyjs/react'
+import { useSelector } from "react-redux"
 import { RiEarthFill } from 'react-icons/ri';
 import { BsDot } from 'react-icons/bs';
 import { MdGroups } from 'react-icons/md';
 import { BsFillCaretDownFill } from 'react-icons/bs';
+import { FaLock } from 'react-icons/fa';
 
 
 import classes from './GroupDetailInfor.module.scss'
 import GroupTooltip from '../GroupTooltip/GroupTooltip';
 
 const GroupDetailInfor = (props) => {
-
+    const currentGroup = useSelector(state => state.group.currentGroup)
+    console.log(currentGroup)
     return (
         <div className={classes.wrapper}>
             <div className={classes.inner}>
                 <div className={classes.inforWrapper}>
                     <div className={classes.infor}>
                         <div className={classes.leftInfo}>
-                            <div className={classes.name}>Reactjs Việt Nam</div>
+                            <div className={classes.name}>{currentGroup.group_name}</div>
                             <div className={classes.group}>
-                                <div className={classes.groupMode}> 
-                                    <RiEarthFill fill='#B0B3B8'/>
-                                    <span>Nhóm công khai</span>
-                                </div>
+                                {currentGroup.modifier === 1 &&
+                                    <div className={classes.groupMode}> 
+                                        <RiEarthFill fill='#B0B3B8'/>
+                                        <span>Nhóm công khai</span>
+                                    </div>
+                                }
+                                {currentGroup.modifier === 2 &&
+                                    <div className={classes.groupMode}> 
+                                        <FaLock fill='#B0B3B8'/>
+                                        <span>Nhóm riêng tư</span>
+                                    </div>
+                                }
                                 <BsDot fill='#B0B3B8'/>
-                                <div className={classes.member}>30.145 thành viên</div>
+                                <div className={classes.member}>{currentGroup.members.length} thành viên</div>
                             </div>
                         </div>
                         <Tippy

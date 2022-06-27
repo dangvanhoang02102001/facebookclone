@@ -1,5 +1,7 @@
 
+import axios from 'axios'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import HeaderComponent from "~/components/Header/Header"
@@ -8,6 +10,7 @@ import MainSide from "~/components/Header/MainSide/MainSide"
 import RightSide from "~/components/Header/RightSide/RightSide"
 
 const Header = () => {
+    const currentUser = useSelector(state => state.user.currentUser)
     const navigate = useNavigate()
     const location = useLocation()
     const [menuActive, setMenuActive] = useState(false)
@@ -49,11 +52,27 @@ const Header = () => {
     }
 
     const handleNavigateProfile = () => {
-        navigate('/profile')
+        axios.get(`/auth/user-profile/${currentUser.id}`)
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
+        navigate(`/profile/${currentUser.id}`)
     }
 
     const handleLogout = () => {
-        navigate('/login')
+        // window.localStorage.removeItem('token')
+        axios.get(`/logout`)
+        .then(function (response) {
+            window.localStorage.clear()
+            console.log(response)
+            navigate('/login')
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
     }
 
     const handleChangePassword = () => {

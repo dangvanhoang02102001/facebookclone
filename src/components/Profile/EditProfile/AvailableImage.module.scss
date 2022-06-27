@@ -1,6 +1,5 @@
 .wrapper {
     width: 548px;
-    height: 620px;
     background-color: var(--nav-bar-background);
     position: relative;
     top: 50%;
@@ -51,6 +50,8 @@
 
 .content {
     padding: 16px;
+    height: 448px;
+    overflow-y: scroll;
 }
 
 .imageGroup {

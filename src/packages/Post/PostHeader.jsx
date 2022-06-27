@@ -1,10 +1,12 @@
 
 // import gamAvatar from '~/assets/img/gamAvt.jpg'
 import Tippy from '@tippyjs/react'
+import Moment from 'react-moment';
 
 import { EarthIcon, OptionIcon } from '~/assets/svg/icon'
 import Tick from '~/packages/Tick'
 import ProfilePreview from '../ProfilePreview/ProfilePreview'
+import defaultAvatar from '~/assets/img/default.png'
 import classes from './PostHeader.module.scss'
 
 const PostHeader = (props) => {
@@ -15,7 +17,7 @@ const PostHeader = (props) => {
                     <Tippy
                         content={
                             <ProfilePreview
-                                avatar={props.avatar}
+                                avatar={props.avatar || defaultAvatar}
                                 name={props.name}
                                 tick={props.tick}
                             />
@@ -27,13 +29,13 @@ const PostHeader = (props) => {
                         delay={[600,500]}
                         appendTo={() => document.body}
                     >
-                        <img src={props.avatar} alt="#" />
+                        <img src={'http://localhost:8000/storage/employees/avt/' + props.avatar || defaultAvatar} alt="#" />
                     </Tippy>
                     <div className={classes.info}>
                         <Tippy
                             content={
                                 <ProfilePreview
-                                    avatar={props.avatar}
+                                    avatar={props.avatar || defaultAvatar}
                                     name={props.name}
                                     tick={props.tick}
                                 />
@@ -49,13 +51,7 @@ const PostHeader = (props) => {
                                 {props.tick && <Tick />}
                             </div>
                         </Tippy>
-                        <div className={classes.time}>
-                            <span>{props.time}</span>
-                            <div className={classes.dot}>.</div>
-                            <div className={classes.mode}>
-                                <EarthIcon />
-                            </div>
-                        </div>
+                        <Moment className={classes.time} fromNow>{props.time}</Moment>
                     </div>
                 </div>
                 <div className={classes.action}>

@@ -12,6 +12,7 @@ import event from '~/assets/img/event.png'
 
 import Card from '~/packages/Card'
 import classes from './TopSideBar.module.scss'
+import { useSelector } from 'react-redux'
 
 const cards = [
     {
@@ -50,11 +51,14 @@ const cards = [
 
 
 const TopSideBar = () => {
+    const currentUser = useSelector(state => state.user.currentUser)
+    console.log(currentUser)
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.link}>
-                <img src={defaultAvt} alt="" />
-                <div>Đặng Hoàng</div>
+                <img src={'http://localhost:8000/storage/employees/avt/' + currentUser.profile_photo_path || defaultAvt} alt="" />
+                <div>{currentUser.name}</div>
             </div>
             {cards.map((card, index) => 
                 <div key={index} className={classes.item}>

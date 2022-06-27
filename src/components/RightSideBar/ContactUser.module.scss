@@ -47,11 +47,12 @@
         top: 50%;
         transform: translate(-50%, -50%);
     }
-   
+    
 }
 
 .avatar {
     & img {
+        object-fit: cover;
         width: 36px;
         height: 36px;
         border-radius: 50%;

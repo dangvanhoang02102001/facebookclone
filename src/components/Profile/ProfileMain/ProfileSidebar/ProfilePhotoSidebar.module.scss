@@ -36,7 +36,11 @@
 .imageGroup {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    margin-right: -4px;
     margin-top: 16px;
+    height: 262px;
+    overflow-y: hidden;
 }
 
 .imageItem {
@@ -50,6 +54,7 @@
         width: 100%;
         border-radius: 4px;
         height: 100%;
+        object-fit: cover;
     }
 
     &:last-child {

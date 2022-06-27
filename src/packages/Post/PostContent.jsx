@@ -1,20 +1,22 @@
 import Tippy from '@tippyjs/react'
+import ReactionEmoji from '../ReactionEmoji/ReactionEmoji';
 
 import { AiOutlineLike } from 'react-icons/ai';
 import { FaRegCommentAlt } from 'react-icons/fa';
 import { RiShareForwardLine } from 'react-icons/ri';
 
 import { HahaIcon, LikeIcon, SadIcon } from '~/assets/svg/icon'
-import ReactionEmoji from '../ReactionEmoji/ReactionEmoji';
 import classes from './PostContent.module.scss'
 
 
 const PostContent = (props) => {
+    // console.log(props)
     return (
         <div className={classes.wrapper}>
-            {props.display === 'news' && 
+            {props.content && 
                 <div className={classes.postContent}>
-                    <img src={props.content} alt="#" />
+                    {props.display === 'post' && <img src={'http://localhost:8000/storage/employees/Post_home/' + props.content} alt="#" onClick={() => props.onShowPostDetail(props.id)}/> }
+                    {props.display === 'group' && <img src={'http://localhost:8000/storage/employees/Post_group/' + props.content} alt="#"  onClick={props.onShowPostGroupDetail}/> }
                 </div>
             }
             <div className={classes.statistical}>
@@ -36,13 +38,6 @@ const PostContent = (props) => {
                             ''
                         :
                             <span>{props.commentCount} bình luận</span>
-                        }
-                    </div>
-                    <div className={classes.share}>
-                        {props.shareCount === 0 ?
-                            ''
-                        :
-                            <span>{props.shareCount} chia sẻ</span>
                         }
                     </div>
                 </div>

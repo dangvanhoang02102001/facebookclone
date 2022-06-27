@@ -8,9 +8,11 @@ import Card from '~/packages/Card'
 
 import classes from './DropContent.module.scss'
 import defaultAvt from '~/assets/img/default.png'
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const DropContent = (props) => {
-    
+    const currentUser = useSelector(state => state.user.currentUser)
     const footer = [
         {
             id: 0,
@@ -48,15 +50,15 @@ const DropContent = (props) => {
 
     return (
         <div className={classes.wrapper}>
-            <div className={classes.header}>
+            <NavLink to='/profile' className={classes.header}>
                 <div className={classes.avatar}>
-                    <img src={defaultAvt} alt="" />
+                    <img src={'http://localhost:8000/storage/employees/avt/' + currentUser.profile_photo_path || defaultAvt} alt="" />
                 </div>
                 <div className={classes.infor} onClick={props.onNavigateProfile}>
-                    <div className={classes.name}>Đặng Hoàng</div>
+                    <div className={classes.name}>{currentUser?.name}</div>
                     <span>Xem trang cá nhân của bạn</span>
                 </div>
-            </div>
+            </NavLink>
             <div className={classes.divider}></div>
             <div className={classes.options}>
                 <div className={classes.item}>

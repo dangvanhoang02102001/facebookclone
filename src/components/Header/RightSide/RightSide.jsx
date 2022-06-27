@@ -6,14 +6,16 @@ import { DropIcon, MenuIcon, MessIcon, NotiIcon } from '~/assets/svg/icon'
 import classes from './RightSide.module.scss'
 import DropContent from "./DropContent";
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 
 const RightSide = (props) => {
-
+    const currentUser = useSelector(state => state.user.currentUser)
+    console.log(currentUser)
     return(
         <div className={classes.wrapper}>
-            <NavLink to='/profile' className={({ isActive }) => classes.profile + ' ' + (isActive ? classes.active: "")} >
-                <img src={avtDefault} alt="" />
-                <span>Đặng Hoàng</span>
+            <NavLink to={`/profile/${currentUser.id}`} className={({ isActive }) => classes.profile + ' ' + (isActive ? classes.active: "")} >
+                <img src={'http://localhost:8000/storage/employees/avt/' + currentUser.profile_photo_path || avtDefault} alt="" />
+                <span>{currentUser.name}</span>
             </NavLink>
             <div className={classes.options}>
                 <div className={classes.option} onClick={props.onActiveMenu}>

@@ -53,6 +53,7 @@
         height: 36px;
         border-radius: 50%;
         margin-right: 12px;
+        object-fit: cover;
 
         & img {
             width: 100%;
@@ -205,5 +206,14 @@
         & span {
             font-size: 1.5rem;
         }
+    }
+}
+
+.groupMode {
+    display: flex;
+    align-items: center;
+
+    & span {
+        margin-left: 8px;
     }
 }

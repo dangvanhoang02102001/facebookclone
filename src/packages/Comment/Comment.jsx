@@ -1,4 +1,4 @@
-
+import Moment from 'react-moment';
 
 import classes from './Comment.module.scss'
 
@@ -7,7 +7,7 @@ const Comment = (props) => {
         <div className={classes.wrapper}>
             <div className={classes.infor}>
                 <div className={classes.avatar}>
-                    <img src={props.avatar} alt="" />
+                    <img src={'http://localhost:8000/storage/employees/avt/' + props.avatar} alt="" />
                 </div>
                 <div className={classes.content}>
                     <span className={classes.name}>{props.name}</span>
@@ -19,7 +19,7 @@ const Comment = (props) => {
             <div className={classes.actions}>
                 <span className={classes.like}>Thích</span>
                 <span className={classes.reply}>Phản hồi</span>
-                <span className={classes.time}>{props.time}</span>
+                <Moment className={classes.time} fromNow>{props.time}</Moment>
             </div>
         </div>
     )

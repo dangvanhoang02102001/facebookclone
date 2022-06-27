@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 import { GrClose } from 'react-icons/gr';
 import classes from './Register.module.scss'
 
 const Register = (props) => {
+    const navigate = useNavigate()
 
     const [fullname, setFullname] = useState('')
     const [email, setEmail] = useState('')
@@ -23,6 +26,30 @@ const Register = (props) => {
         if(password.length === 0) {
             setPassError('Bạn cần nhập password để đăng ký')
         }
+        if (fullname.length !== 0 && email.length !== 0 && password.length !== 0) {
+            axios.post('/auth/register', {
+                name: fullname,
+                email,
+                password
+            })
+            .then(function (response) {
+                console.log(response)
+                navigate('/login')
+            })
+            .catch(function (err) {
+                console.log(err)
+                // switch(err.response.status) {
+                //     case 422:
+                //         setErrors(err.response.data.message)
+                //         break;
+                //     case 401:
+                //         setErrors(err.response.data.message)
+                //         break;
+                //     default:
+                //         setErrors('Đã xảy ra lỗi! Liên hệ gottteam201@gmail.com để được giúp đỡ')
+                // }
+            });
+        }
     }
 
     const handleTypingFullname = (e) => {
@@ -33,6 +60,7 @@ const Register = (props) => {
     }
 
     const handleTypingEmail = (e) => {
+        console.log(e.target.value)
         setEmail(e.target.value)
         if(email.length === 0)  {
             setEmailError('')

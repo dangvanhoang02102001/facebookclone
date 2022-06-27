@@ -1,8 +1,13 @@
-import obitoImg from '~/assets/img/obito.jpg'
+import { Fragment } from 'react'
+import { useSelector } from 'react-redux'
 
 import classes from './ProfilePhotoSidebar.module.scss'
 
-const ProfilePhotoSidebar = () => {
+const ProfilePhotoSidebar = (props) => {
+
+    const posts = useSelector(state => state.user.userPost)
+    console.log(posts)
+    
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
@@ -13,26 +18,15 @@ const ProfilePhotoSidebar = () => {
             </div>
             <div className={classes.content}>
                 <div className={classes.imageGroup}>
-                    <div className={classes.imageItem}>
-                        <img src={obitoImg} alt="" />
-                    </div>
-                    <div className={classes.imageItem}>
-                        <img src={obitoImg} alt="" />
-                    </div>
-                    <div className={classes.imageItem}>
-                        <img src={obitoImg} alt="" />
-                    </div>
-                </div>
-                <div className={classes.imageGroup}>
-                    <div className={classes.imageItem}>
-                        <img src={obitoImg} alt="" />
-                    </div>
-                    <div className={classes.imageItem}>
-                        <img src={obitoImg} alt="" />
-                    </div>
-                    <div className={classes.imageItem}>
-                        <img src={obitoImg} alt="" />
-                    </div>
+                    {posts.map(post => 
+                        <div key={post.id} style={{display: post.image === null && 'none'}} className={classes.imageItem}>
+                            {post.image !== null ? 
+                                <img src={'http://localhost:8000/storage/employees/Post_home/' + post.image} alt="" />
+                            :
+                            <Fragment></Fragment>
+                        }
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

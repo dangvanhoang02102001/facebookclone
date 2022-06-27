@@ -10,6 +10,7 @@ import rhyAvatar from '~/assets/img/rhyAvatar.jpg'
 import cr7Avatar from '~/assets/img/cr7Avatar.jpg'
 import gamAvatar from '~/assets/img/gamAvt.jpg'
 import defaultAvatar from '~/assets/img/default.png'
+import { useSelector } from 'react-redux'
 
 const Contact = () => {
     const data = [
@@ -93,6 +94,9 @@ const Contact = () => {
         },
     ]
 
+    const friendList = useSelector(state => state.friend.userFriend)
+    console.log(friendList)
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
@@ -110,13 +114,13 @@ const Contact = () => {
                 </div>
             </div>
             <div className={classes.listContact}>
-                {data.map((contact, index) => 
+                {friendList.map((contact, index) => 
                     <ContactUser
                         key={index}
                         name={contact.name}
-                        avatar={contact.avatar}
-                        haveStory={contact.haveStory}
-                        isViewed={contact.isViewed}
+                        avatar={contact.profile_photo_path}
+                        // haveStory={contact.haveStory}
+                        // isViewed={contact.isViewed}
                     />
                 )}
             </div>

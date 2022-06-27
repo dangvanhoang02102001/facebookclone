@@ -8,15 +8,19 @@ import bgText from '~/assets/img/bgText.png'
 import { CloseIcon, EarthIcon, EmojiIcon, ImageIcon } from '~/assets/svg/icon';
 import Circle from '~/packages/Circle';
 import classes from './NewPostModal.module.scss'
+import axios from 'axios'
+import { useSelector } from 'react-redux';
 
 const NewPostModal = (props) => {
+    const currentUser = useSelector(state => state.user.currentUser)
    
     const [selectedImage, setSelectedImage] = useState();
+    const [content, setContent] = useState('')
     
     const imageChange = (e) => {
         if (e.target.files && e.target.files.length > 0) {
             setSelectedImage(e.target.files[0]);
-            props.onSetImageMode()
+            props.onSetImageType()
         }
     };
 
@@ -25,11 +29,42 @@ const NewPostModal = (props) => {
         setSelectedImage()
     }
 
+    const handleTypingContent = (e) => {
+        setContent(e.target.value)
+    }
+
+    const handlePost = () => {
+        const formData = new FormData();
+        
+        if(props.type === 'text') {
+            formData.set('content', content);
+            formData.set('access_modifier', 1);
+            axios.post('/posts', formData)
+            .then(function (response) {
+                console.log(response)
+                
+            })
+            .catch(function (err) {
+                console.log(err)
+            });
+        }else {
+            formData.set('content', content);
+            formData.set('access_modifier', 1);
+            formData.append('image', selectedImage);
+            axios.post('/posts',formData)
+            .then(function (response) {
+                console.log(response)
+            })
+            .catch(function (err) {
+                console.log(err)
+            });
+        }
+    }
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
                 <div className={classes.title}>Tạo bài viết</div>
-
                 <div className={classes.circle} onClick={props.onClose}>
                     <div className={classes.closeIcon}>
                         <CloseIcon />
@@ -39,10 +74,10 @@ const NewPostModal = (props) => {
             <div className={classes.main}>
                 <div className={classes.userInfo}>
                     <div className={classes.avatar}>
-                        <img src={defaultAvatar} alt="" />
+                        <img src={'http://localhost:8000/storage/employees/avt/' + currentUser.profile_photo_path || defaultAvatar} alt="" />
                     </div>
                     <div className={classes.inforWrapper}>
-                        <div className={classes.name}>Đặng Hoàng</div>
+                        <div className={classes.name}>{currentUser.name}</div>
                         <div className={classes.mode}>
                             <EarthIcon />
                             <span>Công khai</span>
@@ -54,7 +89,12 @@ const NewPostModal = (props) => {
                     {props.type === 'text' ?
                         <div className={classes.defaultTypeWrapper}>
                             <div className={classes.inputCaptionDefault}>
-                                <input type="text" placeholder='Hoàng ơi, bạn đang nghĩ gì thế?'/>
+                                <input 
+                                    type="text" 
+                                    placeholder={`${currentUser.name} ơi, bạn đang nghĩ gì thế?`}
+                                    value={content}
+                                    onChange={handleTypingContent}
+                                />
                             </div>
                             <div className={classes.defaultOptions}>
                                 <div className={classes.defaultOption}>
@@ -132,7 +172,7 @@ const NewPostModal = (props) => {
                     </div>
                 </div>
             </div>
-            <div className={classes.footer}>
+            <div className={classes.footer} onClick={handlePost}>
                 <div className={classes.button}>
                     <span>Đăng</span>
                 </div>

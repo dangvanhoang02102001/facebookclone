@@ -51,10 +51,10 @@ const PostDetailContent = (props) => {
     return (
         <div className={props.isExpand ? [classes.wrapper, classes.expand].join(' ') : classes.wrapper}>
             <div className={classes.content}>
-                <img src={rma14} alt="" style={{transform: `scale(${scalePercent}%)`}} />
+                <img src={'http://localhost:8000/storage/employees/Post_home/' + props.image} alt="" style={{transform: `scale(${scalePercent}%)`}} />
                 <div className={classes.inner}>
                     <div className={classes.left}>
-                        <div className={classes.circle}>
+                        <div className={classes.circle} onClick={props.onCloseDetailPost}>
                             <CgClose color='#fff' size={24}/>
                         </div>
                         <Link to='/' className={classes.logo}>

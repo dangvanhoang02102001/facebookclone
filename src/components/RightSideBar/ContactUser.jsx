@@ -13,7 +13,7 @@ const ContactUser = (props) => {
                 </div>
                 :
                 <div className={classes.avatar}>
-                    <img src={props.avatar} alt="" />
+                    <img src={'http://localhost:8000/storage/employees/avt/' + props.avatar} alt="" />
                 </div>
             }
             <div className={classes.name}>

@@ -1,16 +1,25 @@
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
+
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import classes from './FormLogin.module.scss'
+
 import Register from '../register/Register';
-import { useNavigate } from 'react-router-dom';
+import classes from './FormLogin.module.scss'
+import { userActions } from '~/store/user-slice';
 
 const FormLogin = () => {
+    const dispatch = useDispatch()
+    
     const navigate = useNavigate()
     const [emailError, setEmailError] = useState('')
     const [passError, setPassError] = useState('')
+
+    const [errors, setErrors] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [registerModal, setRegisterModal] = useState(false);
@@ -29,14 +38,12 @@ const FormLogin = () => {
     const handleTypingPass = (e) => {
         setPassword(e.target.value)
         setPassError('')
-
         if(password.length === 0) {
             setPassError('')
         }
     }   
 
     const handleLogin = () => {
-        console.log('Login')
         if(email.length === 0) 
         {
             setEmailError('Email không thể bỏ trống')
@@ -45,10 +52,33 @@ const FormLogin = () => {
             setPassError('Password không thể bỏ trống')
         }
         if(email.length !== 0 && password.length !== 0) {
-            navigate('/')
+            axios.post('/auth/login', {
+                email,
+                password
+            })
+            .then(function (response) {
+                console.log(response)
+                dispatch(userActions.setCurrentUser(response.data.userInfo))
+                
+                window.localStorage.setItem('user', JSON.stringify(response.data.userInfo))
+                window.localStorage.setItem('token', response.data.token.access_token)
+                navigate('/')
+            })
+            .catch(function (err) {
+                console.log(err)
+                switch(err.response.status) {
+                    case 422:
+                        setErrors(err.response.data.message)
+                        break;
+                    case 401:
+                        setErrors(err.response.data.message)
+                        break;
+                    default:
+                        setErrors('Đã xảy ra lỗi! Liên hệ gottteam201@gmail.com để được giúp đỡ')
+                }
+            });
         }
     }
-    
 
     return(
         <div className={classes.wrapper}>
@@ -95,6 +125,7 @@ const FormLogin = () => {
                             <span>{passError}</span>
                         </div>
                         }
+                        {errors !== '' && <div className={classes.errorResponse}><span>{errors}</span></div>}
                     </div>
                 </Box>
                 <div className={classes.button} onClick={handleLogin}>

@@ -11,12 +11,13 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    margin-right: 4px;
+    margin-right: 6px;
     margin-top: 2px;
     & img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
+        object-fit: cover;
     }
 
 }
@@ -65,4 +66,9 @@
     & .like, .reply {
         font-weight: 600;
     }
+}
+
+.time {
+    font-size: 1.3rem;
+    color: var(--secondary-color);
 }

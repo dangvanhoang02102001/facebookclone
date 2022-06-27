@@ -5,7 +5,6 @@ import IntroContent from "~/components/Profile/ProfileMain/ProfileIntro/IntroCon
 import IntroSidebar from "~/components/Profile/ProfileMain/ProfileIntro/IntroSidebar"
 import OverviewContent from "~/components/Profile/ProfileMain/ProfileIntro/OverviewContent"
 import ProfileIntroComponent from "~/components/Profile/ProfileMain/ProfileIntro/ProfileIntro"
-import RelationshipContent from "~/components/Profile/ProfileMain/ProfileIntro/RelationshipContent"
 
 const ProfileIntro = () => {
     const [option, setOption] = useState('overview')
@@ -22,10 +21,6 @@ const ProfileIntro = () => {
         setOption('contact')
     }
 
-    const handleShowRelationship = () => {
-        setOption('relationship')
-    }
-
     return(
         <ProfileIntroComponent>
             <IntroSidebar
@@ -33,7 +28,6 @@ const ProfileIntro = () => {
                 onShowOverview={handleShowOverview}
                 onShowCountry={handleShowCountry}
                 onShowContact={handleShowContact}
-                onShowRelationship={handleShowRelationship}
             />
             {option === 'overview' && <IntroContent title='Tổng quan'>
                 <OverviewContent />
@@ -43,9 +37,6 @@ const ProfileIntro = () => {
             </IntroContent>}
             {option === 'contact' && <IntroContent title='Thông tin liên hệ'>
                 <ContactContent />
-            </IntroContent>}
-            {option === 'relationship' && <IntroContent title='Các mối quan hệ'>
-                <RelationshipContent />
             </IntroContent>}
         </ProfileIntroComponent> 
     )

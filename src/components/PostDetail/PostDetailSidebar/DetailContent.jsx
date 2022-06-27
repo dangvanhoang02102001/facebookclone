@@ -5,130 +5,11 @@ import cmtAvatar1 from '~/assets/img/commentAvt1.jpg'
 import classes from './DetailContent.module.scss'
 import PostComment from '~/packages/Comment/PostComment'
 
-const DetailContent = () => {
-    const comments = [
-        {
-            user: {
-                name: 'John Cena',
-                avatar: cmtAvatar1
-            },
-            content: 'Hala Madrid !!',
-            time: '1 ngày',
-            state: null,
-            reacts: {
-                total: 233,
-                like: 200,
-                heart: 30,
-                love: 3,
-                wow: 0,
-                smile: 0,
-                sad: 0,
-                angry: 0
-            }
-        },
-        {
-            user: {
-                name: 'John Cena',
-                avatar: cmtAvatar1
-            },
-            content: 'Hala Madrid !!',
-            time: '1 ngày',
-            state: null,
-            reacts: {
-                total: 233,
-                like: 200,
-                heart: 30,
-                love: 3,
-                wow: 0,
-                smile: 0,
-                sad: 0,
-                angry: 0
-            }
-        },
-        {
-            user: {
-                name: 'John Cena',
-                avatar: cmtAvatar1
-            },
-            content: 'Hala Madrid !!',
-            time: '1 ngày',
-            state: null,
-            reacts: {
-                total: 233,
-                like: 200,
-                heart: 30,
-                love: 3,
-                wow: 0,
-                smile: 0,
-                sad: 0,
-                angry: 0
-            }
-        },
-        {
-            user: {
-                name: 'John Cena',
-                avatar: cmtAvatar1
-            },
-            content: 'Hala Madrid !!',
-            time: '1 ngày',
-            state: null,
-            reacts: {
-                total: 233,
-                like: 200,
-                heart: 30,
-                love: 3,
-                wow: 0,
-                smile: 0,
-                sad: 0,
-                angry: 0
-            }
-        },
-        {
-            user: {
-                name: 'John Cena',
-                avatar: cmtAvatar1
-            },
-            content: 'Hala Madrid !!',
-            time: '1 ngày',
-            state: null,
-            reacts: {
-                total: 233,
-                like: 200,
-                heart: 30,
-                love: 3,
-                wow: 0,
-                smile: 0,
-                sad: 0,
-                angry: 0
-            }
-        },
-        {
-            user: {
-                name: 'John Cena',
-                avatar: cmtAvatar1
-            },
-            content: 'Hala Madrid !!',
-            time: '1 ngày',
-            state: null,
-            reacts: {
-                total: 233,
-                like: 200,
-                heart: 30,
-                love: 3,
-                wow: 0,
-                smile: 0,
-                sad: 0,
-                angry: 0
-            }
-        },
-        
-    ]
+const DetailContent = (props) => {
+    console.log(props)
     return (
         <div className={classes.wrapper}>
             <div className={classes.divider}></div>
-            {/* <div className={classes.listComment}>
-                
-            </div> */}
             <OverlayScrollbarsComponent
                 className={classes.listComment}
                 options={{
@@ -139,21 +20,25 @@ const DetailContent = () => {
                     }
                 }}
             >
-                {comments.map((comment, index) => 
+                {props.comments.map((comment, index) => 
                     <Comment
                         key={index}
                         name={comment.user.name}
-                        avatar={comment.user.avatar}
+                        avatar={comment.user.profile_photo_path}
                         content={comment.content}
-                        time={comment.time}
+                        time={comment.created_at}
                         state={comment.state}
-                        totalReacts={comment.reacts.total}
+                        // totalReacts={comment.reacts.total}
 
                     />
                 )}
             </OverlayScrollbarsComponent>
             <div className={classes.commentSection}>
-                <PostComment />
+                <PostComment
+                    text={props.text}
+                    onTypingComment={props.onTypingComment}
+                    onComment={props.onComment}
+                />
             </div>
         </div>
     )

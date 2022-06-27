@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
 
 import { FiArrowRight } from 'react-icons/fi';
-
 import { AddIcon } from '~/assets/svg/icon'
 import classes from './PreviewStory.module.scss'
-
 
 import defaultAvatar from '~/assets/img/default.png'
 import PreviewItem from './PreviewItem'
@@ -17,150 +17,35 @@ import tuanStr from '~/assets/img/tuanStr.jpg'
 import hoaStr from '~/assets/img/hoaStr.jpg'
 import tuyenStr from '~/assets/img/tuyenStr.jpg'
 import hmtStr from '~/assets/img/hmtStr.jpg'
+import { storiesActions } from '~/store/stories-slice';
+import { useEffect } from 'react';
 
 
-const stories = [
-    {
-        id: 0,
-        user: {
-            uid: 'hmt1202',
-            name: 'Hoàng Minh Tuyến',
-            avatar: defaultAvatar,
-            storyCount: 2,
-            storyList: [
-                {
-                    id: 'str02',
-                    content: defaultAvatar,
-                    time: '5 giờ',
-                    isViewed: true
-                },
-                {
-                    id: 'str01',
-                    content: hmtStr,
-                    time: '7 giờ',
-                    isViewed: false
-                },
-            ]
-        }
-    },
-    {
-        id: 1,
-        user: {
-            uid: 'ndt1609',
-            name: 'Nguyễn Dụng Tuyên',
-            avatar: tuyen,
-            storyCount: 1,
-            storyList: [
-                {
-                    id: 'str01',
-                    content: tuyenStr,
-                    time: '7 giờ',
-                    isViewed: true
-                },
-            ]
-        }
-    },
-    {
-        id: 2,
-        user: {
-            uid: 'ntq2010',
-            name: 'Nguyễn Quốc Tuấn',
-            avatar: tuan,
-            storyCount: 1,
-            storyList: [
-                {
-                    id: 'str01',
-                    content: tuanStr,
-                    time: '4 giờ',
-                    isViewed: true
-                },
-            ]
-        }
-    },
-    {
-        id: 3,
-        user: {
-            uid: 'hd0610',
-            name: 'Đoàn Duy Hòa',
-            avatar: hoadoan,
-            storyCount: 3,
-            storyList: [
-                {
-                    id: 'str01',
-                    content: defaultAvatar,
-                    time: '3 giờ',
-                    isViewed: true
-                },
-                {
-                    id: 'str01',
-                    content: defaultAvatar,
-                    time: '1 giờ',
-                    isViewed: true
-                },
-                {
-                    id: 'str01',
-                    content: hoaStr,
-                    time: '7 giờ',
-                    isViewed: true
-                },
-            ]
-        }
-    },
-    {
-        id: 4,
-        user: {
-            uid: 'linhlinhcute1310',
-            name: 'Linh',
-            avatar: linh,
-            storyCount: 1,
-            storyList: [
-                {
-                    id: 'str01',
-                    content: linhStr,
-                    time: '4 giờ',
-                    isViewed: true
-                },
-            ]
-        }
-    },
-    {
-        id: 5,
-        user: {
-            uid: 'thotho',
-            name: 'Thọ',
-            avatar: defaultAvatar,
-            storyCount: 1,
-            storyList: [
-                {
-                    id: 'str01',
-                    content: defaultAvatar,
-                    time: '4 giờ',
-                    isViewed: true
-                },
-            ]
-        }
-    },
-    {
-        id: 6,
-        user: {
-            uid: 'luclu',
-            name: 'Hoàng Lực',
-            avatar: defaultAvatar,
-            storyCount: 1,
-            storyList: [
-                {
-                    id: 'str01',
-                    content: defaultAvatar,
-                    time: '4 giờ',
-                    isViewed: true
-                },
-            ]
-        }
-    },
-]
 
 const PreviewStory = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state => state.user.currentUser)
+    console.log(currentUser)
+
+    useEffect(() => {
+        axios.get('/listStories')
+        .then(function (response) {
+            console.log(response)
+            const myStories = response.data.mystories
+            const stories = response.data.stories
+            const storiesList = myStories.concat(stories)
+            console.log(storiesList)
+            dispatch(storiesActions.setStories(storiesList))
+        })
+        .catch(function (err) {
+            console.log(err)
+        });
+    }, [dispatch])
+
+    const stories = useSelector(state => state.stories.stories)
+    console.log(stories)
+
     const handleCreateStory = () => {
         navigate('/stories/create')
     }
@@ -169,12 +54,14 @@ const PreviewStory = () => {
         navigate('/stories')
     }
 
+    const isHaveArr = stories.filter(story => story.stories_created.length !== 0)
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.story}>
                 <div className={classes.create} onClick={handleCreateStory}>
                     <div className={classes.avatar}>
-                        <img src={defaultAvatar} alt="" />
+                        <img src={'http://localhost:8000/storage/employees/avt/' + currentUser.profile_photo_path || defaultAvatar} alt="" />
                     </div>
                     <div className={classes.footer} >
                         <div className={classes.circleWrapper}>
@@ -185,19 +72,22 @@ const PreviewStory = () => {
                         <span>Tạo tin</span>
                     </div>
                 </div>
-                {stories.map((story, index) => 
+                {stories.map(story => 
                     <PreviewItem
-                        key={index}
-                        uid={story.user.uid}
-                        story={story.user.storyList}
-                        name={story.user.name}
-                        avatar={story.user.avatar}
-                    />
+                        key={story.id}
+                        id={story.id}
+                        createdAt={story.created_at}
+                        name={story.name}
+                        avatar={story.profile_photo_path}
+                        storyList={story.stories_created}
+                    />    
                 )}
             </div>
-            <div className={classes.arrow} onClick={handleShowDetailStoryPage}>
-                <FiArrowRight size={20} color='#B0B3B8'/>
-            </div>
+            {isHaveArr.length >= 4 && 
+             <div className={classes.arrow} onClick={handleShowDetailStoryPage}>
+             <FiArrowRight size={20} color='#B0B3B8'/>
+            </div>}
+           
         </div>
     )
 }

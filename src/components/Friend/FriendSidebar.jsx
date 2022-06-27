@@ -1,10 +1,13 @@
+
 import { NavLink } from 'react-router-dom';
 
 import { FaUserFriends, FaUserPlus, FaUserAlt, FaHouseUser } from 'react-icons/fa';
-
 import classes from './FriendSidebar.module.scss'
 
 const FriendSidebar = () => {
+
+    
+
     return (
         <div className={classes.wrapper}> 
             <div className={classes.header}>

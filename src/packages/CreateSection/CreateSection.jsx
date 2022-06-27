@@ -5,6 +5,7 @@ import { EmojiIcon, ImageIcon, LiveIcon } from '~/assets/svg/icon'
 import defaultAvatar from '~/assets/img/default.png'
 import NewPostModal from './NewPosModal';
 import classes from './CreateSection.module.scss'
+import { useSelector } from 'react-redux';
 
 
 const CreateSection = (props) => {
@@ -32,11 +33,13 @@ const CreateSection = (props) => {
         setType('image')
     }
 
+    const currentUser = useSelector(state => state.user.currentUser)
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
                 <img src={defaultAvatar} alt="" />
-                <span onClick={handleOpenCreateModal}>Hoàng ơi, bạn đang nghĩ gì thế?</span>
+                <span onClick={handleOpenCreateModal}>{currentUser.name} ơi, bạn đang nghĩ gì thế?</span>
                 <Modal
                     open={createModal}
                     onClose={handleCloseCreateModal}

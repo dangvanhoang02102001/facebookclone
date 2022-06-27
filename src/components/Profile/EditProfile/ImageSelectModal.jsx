@@ -38,7 +38,6 @@ const ImageSelectModal = (props) => {
 
     const handleShowAvailableImage = () => setImageAvailable(true)
     const handleCloseAvailableImage = () => setImageAvailable(false)
-
     return (
         <>
             {props.mode === 'avatar'
@@ -86,7 +85,15 @@ const ImageSelectModal = (props) => {
                                 onClose={handleCloseAvatarEdit}
                             >
                                 <>  
-                                    <AvatarEditModal title='Cập nhật ảnh đại diện' onClose={handleCloseAvatarEdit} selectedAvatar={selectedAvatar}/>
+                                    <AvatarEditModal 
+                                        avatar={props.avatar}
+                                        coverImg={props.coverImg}
+                                        bio={props.bio}
+                                        address={props.address}
+                                        title='Cập nhật ảnh đại diện' 
+                                        onClose={handleCloseAvatarEdit} 
+                                        selectedAvatar={selectedAvatar}
+                                    />
                                 </>
                             </Modal>
                         </div>
@@ -137,6 +144,10 @@ const ImageSelectModal = (props) => {
                             >
                                 <>  
                                     <CoverEditModal 
+                                        avatar={props.avatar}
+                                        coverImg={props.coverImg}
+                                        bio={props.bio}
+                                        address={props.address}
                                         title='Cập nhật ảnh bìa' 
                                         onClose={handleCloseCoverEdit} 
                                         selectedCover={selectedCover}

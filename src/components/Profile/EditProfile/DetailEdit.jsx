@@ -1,3 +1,4 @@
+import moment from 'moment';
 import Switch from '@mui/material/Switch';
 import { styled } from "@mui/material/styles";
 
@@ -50,6 +51,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   }));
 
 const DetailEdit = (props) => {
+    console.log(props)
     return (
         <div className={classes.wrapper}>
             <div className={classes.header}>
@@ -66,36 +68,27 @@ const DetailEdit = (props) => {
                     <span>Chi tiết bạn chọn sẽ hiển thị công khai.</span>
                 </div>
                 <div className={classes.detail}>
-                    <div className={classes.infor}>
-                        <div className={classes.inforField}>Quê quán</div>
-                        <div className={classes.inforDetail}>
-                            <div className={classes.inforDetailLeft}>
-                                <AntSwitch defaultChecked inputProps={{ "aria-label": "ant design" }} />
-                                <span className={classes.text}>Đến từ Hưng Yên</span>
-                            </div>
-                            <div className={classes.inforDetailEdit}>
-                                <RiPencilFill size={24} fill='#fff'/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={classes.infor}>
-                        <div className={classes.inforField}>Mối quan hệ</div>
-                        <div className={classes.inforDetail}>
-                            <div className={classes.inforDetailLeft}>
-                                <AntSwitch defaultChecked inputProps={{ "aria-label": "ant design" }} />
-                                <span className={classes.text}>Độc thân</span>
-                            </div>
-                            <div className={classes.inforDetailEdit}>
-                                <RiPencilFill size={24} fill='#fff'/>
+                    {props.address && 
+                        <div className={classes.infor}>
+                            <div className={classes.inforField}>Quê quán</div>
+                            <div className={classes.inforDetail}>
+                                <div className={classes.inforDetailLeft}>
+                                    <AntSwitch defaultChecked inputProps={{ "aria-label": "ant design" }} />
+                                    <span className={classes.text}>Đến từ {props.address}</span>
+                                </div>
+                                <div className={classes.inforDetailEdit}>
+                                    <RiPencilFill size={24} fill='#fff'/>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
+                    
                     <div className={classes.infor}>
                         <div className={classes.inforField}>Tham gia Facebook</div>
                         <div className={classes.inforDetail}>
                             <div className={classes.inforDetailLeft}>
                                 <AntSwitch defaultChecked inputProps={{ "aria-label": "ant design" }} />
-                                <span className={classes.text}>Tham gia vào Tháng 3 năm 2017</span>
+                                <span className={classes.text}>Tham gia vào năm {moment(props.timeJoin).format('YYYY')}</span>
                             </div>
                             <div className={classes.inforDetailEdit}>
                                 <RiPencilFill size={24} fill='#fff'/>
